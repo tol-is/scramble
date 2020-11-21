@@ -1,0 +1,18 @@
+html,
+body {
+  overflow: hidden;
+  color: white;
+  background-color: #101010;
+  margin: 0;
+}
+
+html {
+  font-family: "Inter var", sans-serif;
+}
+
+.App {
+  padding: 4vw;
+}
+
+.scramble-text {
+}

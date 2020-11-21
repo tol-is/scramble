@@ -1,0 +1,61 @@
+{
+  "name": "@a7sc11u/scramble",
+  "author": "Apostolos Christodoulou <a7sc11u@gmail.com> (@a7sc11u)",
+  "version": "0.0.1",
+  "license": "MIT",
+  "module": "dist/scramble.esm.js",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "size-limit": [
+    {
+      "path": "dist/react-text-scramble.cjs.production.min.js",
+      "limit": "1 KB"
+    },
+    {
+      "path": "dist/react-text-scramble.esm.js",
+      "limit": "1 KB"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^4.8.0",
+    "@types/react": "^16.14.0",
+    "@types/react-dom": "^16.9.9",
+    "husky": "^4.3.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "size-limit": "^4.8.0",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.0.3",
+    "typescript": "^4.1.2"
+  }
+}

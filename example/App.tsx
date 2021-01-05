@@ -1,12 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import { TextScramble } from '../.';
 
 export const App = () => {
   return (
     <div className="App">
-      <div>
-        <TextScramble text="yay" />
-      </div>
+      <TextScramble text="Fugiat ullamco non magna dolor excepteur." />
     </div>
   );
 };

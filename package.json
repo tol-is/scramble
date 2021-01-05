@@ -1,7 +1,7 @@
 {
   "name": "@a7sc11u/scramble",
   "author": "Apostolos Christodoulou <a7sc11u@gmail.com> (@a7sc11u)",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "module": "dist/scramble.esm.js",
   "main": "dist/index.js",

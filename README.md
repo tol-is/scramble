@@ -10,6 +10,7 @@ Live demo at [https://scramble.vercel.app/](https://scramble.vercel.app/)
 
 | Property  | type  | default | description |
 |---|---|---|---|
+| as   | string | - | polymorphic tag |
 | play   | boolean | true | start/stop animation |
 | text   | string  | - | text to scramble. |
 |  speed | number  | 0.4 | 0-1 range that determines the ticking speed. 1 means 1 tick per frame |
@@ -37,12 +38,16 @@ import { TextScramble } from '@a7sc11u/scramble';
 
 export const App = () => {
 
+  const elRef = React.useRef<HTMLDivElement>(null);
+
   const handleComplete = () => {
     console.log('scramble is done');
   }
 
   return (
     <TextScramble 
+      ref={elRef}
+      as="div"
       play={true}
       speed={0.4}
       scramble={8}

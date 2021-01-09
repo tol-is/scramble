@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { forwardRefWithAs } from '@radix-ui/react-polymorphic';
 
 function getRandomInt(min: number, max: number) {
   return Math.floor(Math.random() * (max - min) + min);
@@ -10,6 +11,7 @@ function getRandomChar() {
 }
 
 type TextScrambleProps = {
+  as?: string;
   text: string;
   play?: boolean;
   speed?: number;
@@ -21,18 +23,41 @@ type TextScrambleProps = {
   onComplete?: Function;
 };
 
-export const TextScramble: React.FC<TextScrambleProps> = ({
-  text,
-  play = true,
-  speed = 0.4,
-  seed = 3,
-  seedInterval = 10,
-  step = 1,
-  stepInterval = 1,
-  scramble = 8,
-  onComplete,
-  ...rest
-}: TextScrambleProps) => {
+const COMP_TAG = 'span';
+
+export const TextScramble = forwardRefWithAs<
+  typeof COMP_TAG,
+  TextScrambleProps
+>((props, ref) => {
+  //
+  const {
+    as: Comp = COMP_TAG,
+    text,
+    play = true,
+    speed = 0.4,
+    seed = 3,
+    seedInterval = 10,
+    step = 1,
+    stepInterval = 1,
+    scramble = 8,
+    onComplete,
+    ...rest
+  } = props;
+
+  // text node ref
+  const textRef = React.useRef<HTMLSpanElement>(null);
+
+  // combine refs
+  React.useEffect(() => {
+    if (!ref) return;
+
+    if (typeof ref === 'function') {
+      ref(textRef.current);
+    } else {
+      ref.current = textRef.current;
+    }
+  }, [ref, textRef]);
+
   // animation frame request
   const requestRef = React.useRef<number>(0);
 
@@ -48,9 +73,6 @@ export const TextScramble: React.FC<TextScrambleProps> = ({
 
   // scramble controller
   const scrambleRef = React.useRef<number[]>([]);
-
-  // text node ref
-  const textRef = React.useRef<HTMLSpanElement>(null);
 
   const seedRandomCharacters = () => {
     for (var i = 0; i < seed; i++) {
@@ -131,12 +153,14 @@ export const TextScramble: React.FC<TextScrambleProps> = ({
     tickRef.current += 1;
   };
 
+  // reset tick when text is changed
   React.useEffect(() => {
     tickRef.current = 0;
     idxRef.current = 0;
     scrambleRef.current = new Array(text.length);
   }, [text]);
 
+  //
   React.useEffect(() => {
     if (play) {
       requestRef.current = requestAnimationFrame(animate);
@@ -148,5 +172,5 @@ export const TextScramble: React.FC<TextScrambleProps> = ({
     };
   }, [animate, play]); // Make sure the effect runs only once
 
-  return <span ref={textRef} {...rest} />;
-};
+  return <Comp ref={textRef} {...rest} />;
+});

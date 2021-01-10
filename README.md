@@ -2,7 +2,7 @@
 
 A scramble text UI component for react.
 
-The animation maintains an internal ticking clock, that runs up to 60 times per second, or once per animation frame. The animation starts from the beginning of the input text, and scrambles until the end of the input, given a set of control parameters that allow you to control how many characters are added and over how many ticks, and how many times each character is randomized.
+The animation maintains an internal ticking clock, that runs up to 60 times per second, or once per animation frame. The animation starts from the beginning of the  text, and scrambles until the end of the input, given a set of parameters that allow you to control how many characters are added and over how many ticks, and how many times each character is randomized.
 
 Live demo at [https://scramble.vercel.app/](https://scramble.vercel.app/)
 
